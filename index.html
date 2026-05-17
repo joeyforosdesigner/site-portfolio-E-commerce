@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joey Foros — Senior Brand & E-commerce Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cf"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">Joey Foros</div>
+  <ul class="nav-links">
+    <li><a href="#case-studies">Cases</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#metrics">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="badge"><div class="pulse-dot"></div>Available for Contracts</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Senior Brand & E-commerce Designer · Douala · International</p>
+  <h1 class="hero-name">Joey Foros</h1>
+  <h2 class="hero-title">Brand × Commerce × Systems</h2>
+  <p class="hero-sub">Crafting high-end visual ecosystems and hyper-converting ad frameworks for premium D2C brands worldwide. Turning pixels into predictable revenue.</p>
+  <div class="hero-bottom">
+    <div class="hero-stats">
+      <div><span class="hero-stat-num">7+</span><span class="hero-stat-label">Years</span></div>
+      <div><span class="hero-stat-num">150+</span><span class="hero-stat-label">Assets</span></div>
+      <div><span class="hero-stat-num">94%</span><span class="hero-stat-label">Retainer Rate</span></div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div><span>Scroll</span>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="case-studies" id="case-studies">
+  <div class="section-label">01 / Case Studies</div>
+  <h2 class="section-big-title" data-animate>Brand Ecosystems</h2>
+  <p class="section-desc" data-animate>Two full brand ecosystems — identity, product visuals, paid social, and conversion frameworks. Click to explore.</p>
+  <div class="case-cards-grid">
+    <div class="case-card" data-animate onclick="openPanel('relmite')">
+      <img src="assets/Relmite.webp" alt="Relmite" loading="lazy">
+      <div class="case-card-overlay">
+        <div class="case-card-num">CS · 01</div>
+        <div class="case-card-brand">Relmite</div>
+        <div class="case-card-desc">Premium leather belts — dark luxury aesthetics, masculine textures, and a full D2C ad system built for performance.</div>
+        <div class="case-card-cta">Enter Case Study <span class="arrow">→</span></div>
+      </div>
+    </div>
+    <div class="case-card" data-animate style="transition-delay:.1s" onclick="openPanel('petalsmooth')">
+      <img src="assets/Petalsmooth.webp" alt="Petalsmooth" loading="lazy">
+      <div class="case-card-overlay">
+        <div class="case-card-num">CS · 02</div>
+        <div class="case-card-brand">Petalsmooth</div>
+        <div class="case-card-desc">Modern feminine grooming devices — pastel minimalism, clinical trust-building, and high-converting social frameworks.</div>
+        <div class="case-card-cta">Enter Case Study <span class="arrow">→</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PANEL: RELMITE -->
+<div class="case-panel" id="panel-relmite">
+  <div class="panel-close-btn">
+    <button onclick="closePanel('relmite')">✕ &nbsp;Close</button>
+  </div>
+  <div class="case-panel-inner">
+    <div class="case-panel-label">CS · 01 / Premium Leather Goods · D2C Brand</div>
+    <h2 class="case-panel-title">Relmite</h2>
+    <p class="case-panel-sub">Full brand ecosystem for a premium D2C leather belt brand — identity, product visuals, high-converting paid social ads, and infographic frameworks. Dark luxury aesthetics, masculine textures, zero compromise.</p>
+    <div class="case-panel-tags">
+      <span class="case-panel-tag">Brand Identity</span>
+      <span class="case-panel-tag">Paid Social Ads</span>
+      <span class="case-panel-tag">E-commerce Visuals</span>
+      <span class="case-panel-tag">Infographics</span>
+      <span class="case-panel-tag">D2C Strategy</span>
+      <span class="case-panel-tag">Conversion Creative</span>
+    </div>
+    <div class="case-panel-grid" id="grid-relmite"></div>
+  </div>
+</div>
+
+<!-- PANEL: PETALSMOOTH -->
+<div class="case-panel" id="panel-petalsmooth">
+  <div class="panel-close-btn">
+    <button onclick="closePanel('petalsmooth')">✕ &nbsp;Close</button>
+  </div>
+  <div class="case-panel-inner">
+    <div class="case-panel-label">CS · 02 / Beauty & Personal Care · D2C Brand</div>
+    <h2 class="case-panel-title">Petalsmooth</h2>
+    <p class="case-panel-sub">End-to-end visual system for a modern feminine grooming device brand — clean pastel minimalism, clinical proof frameworks, testimonial ads, and multi-language conversion creatives. Built for scale.</p>
+    <div class="case-panel-tags">
+      <span class="case-panel-tag">Brand Identity</span>
+      <span class="case-panel-tag">Paid Social Ads</span>
+      <span class="case-panel-tag">Clinical Infographics</span>
+      <span class="case-panel-tag">Multilingual Creatives</span>
+      <span class="case-panel-tag">E-commerce System</span>
+      <span class="case-panel-tag">Conversion Creative</span>
+    </div>
+    <div class="case-panel-grid" id="grid-petalsmooth"></div>
+  </div>
+</div>
+
+<!-- SELECTED WORK -->
+<section class="lab" id="lab">
+  <div class="section-label">02 / Production Lab</div>
+  <h2 class="section-big-title" data-animate>Selected Work</h2>
+  <p class="section-desc" data-animate>High-volume production across multiple verticals and international markets. Click any image to view.</p>
+  <div class="pin-grid" id="pinGrid"></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>Direct-to-Consumer</span><span>E-commerce Systems</span>
+    <span>Conversion Rate</span><span>Brand Identity</span>
+    <span>E-commerce Systems</span><span>Conversion Rate</span>
+    <span>Brand Identity</span><span>UI / UX</span>
+  </div>
+</div>
+
+<!-- METRICS -->
+<section class="metrics" id="metrics">
+  <div class="marquee-bg">CONVERSION · SCALE · SYSTEM · HIGH-END · DESIGN SYSTEM · ROI · CONVERSION · SCALE · SYSTEM · HIGH-END · DESIGN SYSTEM · ROI ·</div>
+  <div class="section-label">03 / Output Proof</div>
+  <div class="metrics-row">
+    <div class="metric-item" data-animate>
+      <span class="metric-num">2.4<sup>x</sup></span>
+      <span class="metric-label">Average CTR Increase on Ads</span>
+    </div>
+    <div class="metric-item" data-animate style="transition-delay:.15s">
+      <span class="metric-num">5</span>
+      <span class="metric-label">Active E-com Brands Assisted</span>
+    </div>
+    <div class="metric-item" data-animate style="transition-delay:.3s">
+      <span class="metric-num">400<sup>+</sup></span>
+      <span class="metric-label">Custom Templates & Systems Built</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer-cta" id="contact">
+  <div class="section-label">04 / Contact</div>
+  <h2 class="footer-title">Let's Build<br><em>Your Empire.</em></h2>
+  <div class="footer-actions">
+    <a href="mailto:joeyforos@gmail.com" class="btn-primary"><span>↗ Email Directly</span></a>
+    <a href="https://wa.me/237654491984" target="_blank" rel="noopener" class="btn-ghost">WhatsApp ↗</a>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Joey Foros · Senior Brand & E-commerce Designer · All rights reserved.</span>
+    <a class="footer-top-link" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to Top ↑</a>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-bg" onclick="closeLightbox()"></div>
+  <button class="lb-close" onclick="closeLightbox()">✕ Close</button>
+  <button class="lb-nav lb-prev" onclick="lbNav(-1)">‹</button>
+  <button class="lb-nav lb-next" onclick="lbNav(1)">›</button>
+  <div class="lightbox-inner">
+    <img id="lbImg" src="" alt="">
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
