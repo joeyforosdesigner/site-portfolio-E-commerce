@@ -29,6 +29,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -37,6 +38,7 @@ body {
   font-family: var(--syne);
   overflow-x: hidden;
   max-width: 100%;
+  width: 100%;
   cursor: none;
   opacity: 0;
   animation: pageFadeIn 0.8s ease-out 0.05s forwards;
@@ -236,7 +238,7 @@ nav.scrolled {
 
 .hero-name {
   font-family: var(--syne);
-  font-size: clamp(60px, 13vw, 130px);
+  font-size: clamp(44px, 10vw, 130px);
   font-weight: 800;
   line-height: .88;
   letter-spacing: -.04em;
