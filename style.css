@@ -238,7 +238,7 @@ nav.scrolled {
 
 .hero-name {
   font-family: var(--syne);
-  font-size: clamp(44px, 10vw, 130px);
+  font-size: clamp(37px, 10vw, 130px);
   font-weight: 800;
   line-height: .88;
   letter-spacing: -.04em;
