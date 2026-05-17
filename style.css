@@ -238,7 +238,7 @@ nav.scrolled {
 
 .hero-name {
   font-family: var(--syne);
-  font-size: clamp(37px, 10vw, 130px);
+  font-size: clamp(41px, 12vw, 130px);
   font-weight: 800;
   line-height: .88;
   letter-spacing: -.04em;
@@ -516,7 +516,7 @@ nav.scrolled {
 
 .case-panel-label { font-family: var(--mono); font-size: 9px; color: var(--gold); letter-spacing: .2em; text-transform: uppercase; margin-bottom: 14px; }
 .case-panel-title {
-  font-size: clamp(28px, 6vw, 72px);
+  font-family: var(--syne); font-size: clamp(40px, 10vw, 110px);
   font-weight: 800; text-transform: uppercase; letter-spacing: -.04em; line-height: .88; margin-bottom: 22px;
   color: var(--white);
   overflow-wrap: break-word;
