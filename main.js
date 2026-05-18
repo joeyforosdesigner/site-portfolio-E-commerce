@@ -45,14 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
     'work-69.webp','work-70.webp','work-71.webp','work-72.webp',
     'work-73.webp','work-74.webp','work-75.webp','work-76.webp',
     'work-77.webp','work-78.webp','work-79.webp','work-80.webp',
-    'work-81.webp','work-82.webp','work-83.webp','work-84.webp',
+    'work-82.webp','work-83.webp','work-84.webp',
     'work-85.webp','work-86.webp','work-87.webp','work-88.webp',
     'work-89.webp','work-91.webp','work-92.webp',
-    'work-93.webp','work-94.webp','work-95.webp','work-96.webp',
+    'work-95.webp','work-96.webp',
     'work-97.webp','work-101.webp','work-102.webp','work-103.webp','work-104.webp',
     'work-105.webp','work-106.webp','work-107.webp','work-108.webp',
     'work-109.webp','work-110.webp','work-111.webp','work-112.webp',
-    'work-113.webp','work-114.webp'
+    'work-113.webp'
   ];
 
   const relmiteImages     = rawRelmite.map(img => basePath + img);
