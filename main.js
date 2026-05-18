@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'work-97.webp','work-101.webp','work-102.webp','work-103.webp','work-104.webp',
     'work-105.webp','work-106.webp','work-107.webp','work-108.webp',
     'work-109.webp','work-110.webp','work-111.webp','work-112.webp',
-    'work-113.webp','work-114.webp','work-115.webp'
+    'work-113.webp','work-114.webp'
   ];
 
   // Application du chemin d'accès
