@@ -55,9 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
     'work-113.webp','work-114.webp'
   ];
 
-  const relmiteImages    = rawRelmite.map(img => basePath + img);
+  const relmiteImages     = rawRelmite.map(img => basePath + img);
   const petalsmoothImages = rawPetalsmooth.map(img => basePath + img);
-  const allImages        = shuffle(rawAllImages.map(img => basePath + img));
+  const allImages         = shuffle(rawAllImages.map(img => basePath + img));
 
   function shuffle(arr) {
     const a = [...arr];
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
   buildPins('grid-petalsmooth', petalsmoothImages);
 
   // ─── LIGHTBOX ──────────────────────────────────────────────────────────────
-  let lbImages = [], lbIndex = 0;
+  let lbImages = [], lbIndex = 0, lbOpen = false;
 
   window.openLightbox = function(images, index) {
     lbImages = images;
@@ -104,6 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setLbImg(images[index]);
     document.getElementById('lightbox').classList.add('open');
     document.body.style.overflow = 'hidden';
+    lbOpen = true;
+    history.pushState({ lightbox: true }, '');
   };
 
   function setLbImg(src) {
@@ -115,7 +117,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.closeLightbox = function() {
     document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow = '';
+    document.body.style.overflow = activePanel ? 'hidden' : '';
+    lbOpen = false;
+    if (history.state && history.state.lightbox) {
+      history.back();
+    }
   };
 
   window.lbNav = function(dir) {
@@ -124,35 +130,26 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   document.addEventListener('keydown', e => {
-    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (!lbOpen) return;
     if (e.key === 'ArrowRight') window.lbNav(1);
     if (e.key === 'ArrowLeft')  window.lbNav(-1);
     if (e.key === 'Escape')     window.closeLightbox();
   });
 
-  // ─── CASE PANELS — avec gestion du bouton retour ───────────────────────────
-  let savedScroll  = 0;
-  let activePanel  = null; // nom du panel ouvert ('relmite' | 'petalsmooth' | null)
+  // ─── CASE PANELS ───────────────────────────────────────────────────────────
+  let savedScroll = 0;
+  let activePanel = null;
 
-  // Au chargement, on pose un état "base" dans l'historique
-  // pour pouvoir détecter le premier popstate
-  history.replaceState({ panel: null }, '');
+  history.replaceState({ panel: null, lightbox: false }, '');
 
   window.openPanel = function(name) {
-    // On ne sauvegarde le scroll que si aucun panel n'est déjà ouvert
     if (!activePanel) savedScroll = window.scrollY;
-
-    // Ferme l'éventuel panel déjà ouvert sans toucher à l'historique
     if (activePanel && activePanel !== name) {
       document.getElementById('panel-' + activePanel).classList.remove('open');
     }
-
     activePanel = name;
     document.getElementById('panel-' + name).classList.add('open');
     document.body.style.overflow = 'hidden';
-
-    // Pousse un nouvel état dans l'historique
-    // → le bouton "retour" du navigateur / smartphone reviendra ici
     history.pushState({ panel: name }, '');
   };
 
@@ -161,31 +158,38 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
     activePanel = null;
     window.scrollTo(0, savedScroll);
-
-    // Si la fermeture vient du bouton "✕ Close" (et non de popstate),
-    // on retire l'entrée qu'on avait poussée pour rester cohérent
     if (history.state && history.state.panel === name) {
       history.back();
     }
   };
 
-  // Intercepte le bouton retour du navigateur / smartphone
+  // ─── POPSTATE — bouton retour navigateur / smartphone ─────────────────────
   window.addEventListener('popstate', e => {
-    // Si on revient sur un état sans panel, on ferme ce qui est ouvert
-    if (!e.state || !e.state.panel) {
-      if (activePanel) {
-        document.getElementById('panel-' + activePanel).classList.remove('open');
-        document.body.style.overflow = '';
-        activePanel = null;
-        window.scrollTo(0, savedScroll);
-      }
+    const state = e.state || {};
+
+    // Priorité 1 : ferme la lightbox si elle est ouverte
+    if (lbOpen) {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = activePanel ? 'hidden' : '';
+      lbOpen = false;
+      return;
     }
-    // Si on navigue vers un autre panel (cas rare), on l'ouvre
-    else if (e.state.panel && e.state.panel !== activePanel) {
+
+    // Priorité 2 : ferme le panel si l'état cible n'en contient pas
+    if (!state.panel && activePanel) {
+      document.getElementById('panel-' + activePanel).classList.remove('open');
+      document.body.style.overflow = '';
+      activePanel = null;
+      window.scrollTo(0, savedScroll);
+      return;
+    }
+
+    // Priorité 3 : ouvre un panel différent si l'état cible en contient un
+    if (state.panel && state.panel !== activePanel) {
       if (activePanel) {
         document.getElementById('panel-' + activePanel).classList.remove('open');
       }
-      activePanel = e.state.panel;
+      activePanel = state.panel;
       document.getElementById('panel-' + activePanel).classList.add('open');
       document.body.style.overflow = 'hidden';
     }
