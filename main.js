@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'work-77.webp','work-78.webp','work-79.webp','work-80.webp',
     'work-81.webp','work-82.webp','work-83.webp','work-84.webp',
     'work-85.webp','work-86.webp','work-87.webp','work-88.webp',
-    'work-89.webp','work-91.webp','work-92.webp','work-97.webp',
+    'work-89.webp','work-91.webp','work-92.webp',
     'work-93.webp','work-94.webp','work-95.webp','work-96.webp',
     'work-97.webp','work-101.webp','work-102.webp','work-103.webp','work-104.webp',
     'work-105.webp','work-106.webp','work-107.webp','work-108.webp',
