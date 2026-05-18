@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // ─── DOSSIER DES IMAGES ──────────────────────────────────────────────────
-  // Ajoute automatiquement le préfixe 'assets/' à toutes les images
   const basePath = 'assets/';
 
   // ─── DATA ─────────────────────────────────────────────────────────────────
@@ -56,10 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
     'work-113.webp','work-114.webp'
   ];
 
-  // Application du chemin d'accès
-  const relmiteImages = rawRelmite.map(img => basePath + img);
+  const relmiteImages    = rawRelmite.map(img => basePath + img);
   const petalsmoothImages = rawPetalsmooth.map(img => basePath + img);
-  const allImages = shuffle(rawAllImages.map(img => basePath + img));
+  const allImages        = shuffle(rawAllImages.map(img => basePath + img));
 
   function shuffle(arr) {
     const a = [...arr];
@@ -75,23 +73,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const c = document.getElementById(containerId);
     if (!c) return;
     c.innerHTML = '';
-    
     images.forEach((src, i) => {
       const div = document.createElement('div');
       div.className = 'pin';
-      
       const img = document.createElement('img');
       img.src = src;
       img.alt = 'Portfolio Asset';
       img.loading = 'lazy';
-      
-      // MODE DEBUG : Affiche les images cassées avec une bordure rouge
       img.onerror = function() {
-        this.style.border = "2px solid red";
-        this.alt = "ERREUR : " + src;
-        console.error("L'image n'a pas été trouvée à cet endroit : ", this.src);
+        this.style.border = '2px solid red';
+        this.alt = 'ERREUR : ' + src;
+        console.error("L'image n'a pas été trouvée : ", this.src);
       };
-
       div.appendChild(img);
       div.addEventListener('click', () => openLightbox(images, i));
       c.appendChild(div);
@@ -107,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.openLightbox = function(images, index) {
     lbImages = images;
-    lbIndex = index;
+    lbIndex  = index;
     setLbImg(images[index]);
     document.getElementById('lightbox').classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -137,20 +130,66 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape')     window.closeLightbox();
   });
 
-  // ─── CASE PANELS ───────────────────────────────────────────────────────────
-  let savedScroll = 0;
+  // ─── CASE PANELS — avec gestion du bouton retour ───────────────────────────
+  let savedScroll  = 0;
+  let activePanel  = null; // nom du panel ouvert ('relmite' | 'petalsmooth' | null)
+
+  // Au chargement, on pose un état "base" dans l'historique
+  // pour pouvoir détecter le premier popstate
+  history.replaceState({ panel: null }, '');
 
   window.openPanel = function(name) {
-    savedScroll = window.scrollY;
+    // On ne sauvegarde le scroll que si aucun panel n'est déjà ouvert
+    if (!activePanel) savedScroll = window.scrollY;
+
+    // Ferme l'éventuel panel déjà ouvert sans toucher à l'historique
+    if (activePanel && activePanel !== name) {
+      document.getElementById('panel-' + activePanel).classList.remove('open');
+    }
+
+    activePanel = name;
     document.getElementById('panel-' + name).classList.add('open');
     document.body.style.overflow = 'hidden';
+
+    // Pousse un nouvel état dans l'historique
+    // → le bouton "retour" du navigateur / smartphone reviendra ici
+    history.pushState({ panel: name }, '');
   };
 
   window.closePanel = function(name) {
     document.getElementById('panel-' + name).classList.remove('open');
     document.body.style.overflow = '';
+    activePanel = null;
     window.scrollTo(0, savedScroll);
+
+    // Si la fermeture vient du bouton "✕ Close" (et non de popstate),
+    // on retire l'entrée qu'on avait poussée pour rester cohérent
+    if (history.state && history.state.panel === name) {
+      history.back();
+    }
   };
+
+  // Intercepte le bouton retour du navigateur / smartphone
+  window.addEventListener('popstate', e => {
+    // Si on revient sur un état sans panel, on ferme ce qui est ouvert
+    if (!e.state || !e.state.panel) {
+      if (activePanel) {
+        document.getElementById('panel-' + activePanel).classList.remove('open');
+        document.body.style.overflow = '';
+        activePanel = null;
+        window.scrollTo(0, savedScroll);
+      }
+    }
+    // Si on navigue vers un autre panel (cas rare), on l'ouvre
+    else if (e.state.panel && e.state.panel !== activePanel) {
+      if (activePanel) {
+        document.getElementById('panel-' + activePanel).classList.remove('open');
+      }
+      activePanel = e.state.panel;
+      document.getElementById('panel-' + activePanel).classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  });
 
   // ─── CURSOR ────────────────────────────────────────────────────────────────
   const cur = document.getElementById('cursor');
@@ -158,10 +197,8 @@ document.addEventListener('DOMContentLoaded', () => {
   let mx = 0, my = 0, fx = 0, fy = 0;
 
   document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  
-  // Effet de clic sur le curseur
   document.addEventListener('mousedown', () => { cur.style.transform = 'translate(-50%, -50%) scale(0.6)'; });
-  document.addEventListener('mouseup', () => { cur.style.transform = 'translate(-50%, -50%) scale(1)'; });
+  document.addEventListener('mouseup',   () => { cur.style.transform = 'translate(-50%, -50%) scale(1)'; });
 
   (function animC() {
     fx += (mx - fx) * 0.2; fy += (my - fy) * 0.2;
@@ -171,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })();
 
   document.querySelectorAll('a, button, .case-card, .pin, .metric-item').forEach(el => {
-    el.addEventListener('mouseenter', () => { cur.classList.add('hov'); cf.classList.add('hov'); });
+    el.addEventListener('mouseenter', () => { cur.classList.add('hov');    cf.classList.add('hov'); });
     el.addEventListener('mouseleave', () => { cur.classList.remove('hov'); cf.classList.remove('hov'); });
   });
 
@@ -180,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60)
   );
 
-  // ─── INTERSECTION OBSERVER (Animations au scroll) ──────────────────────────
+  // ─── INTERSECTION OBSERVER ─────────────────────────────────────────────────
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
@@ -191,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ─── MAGNETIC BUTTONS ──────────────────────────────────────────────────────
   document.querySelectorAll('.btn-primary, .btn-ghost').forEach(btn => {
     btn.addEventListener('mousemove', e => {
-      const r = btn.getBoundingClientRect();
+      const r  = btn.getBoundingClientRect();
       const dx = (e.clientX - (r.left + r.width  / 2)) * 0.25;
       const dy = (e.clientY - (r.top  + r.height / 2)) * 0.25;
       btn.style.transform = `translate(${dx}px, ${dy}px)`;
