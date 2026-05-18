@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'work-57.webp','work-59.webp','work-60.webp','work-99.webp',
     'work-61.webp','work-62.webp','work-63.webp','work-64.webp',
     'work-65.webp','work-66.webp','work-67.webp','work-68.webp',
-    'work-69.webp','work-70.webp','work-71.webp','work-72.webp',
+    'work-70.webp','work-71.webp','work-72.webp',
     'work-73.webp','work-74.webp','work-75.webp','work-76.webp',
     'work-77.webp','work-78.webp','work-79.webp','work-80.webp',
     'work-82.webp','work-83.webp','work-84.webp',
