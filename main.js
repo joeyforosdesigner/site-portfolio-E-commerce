@@ -25,36 +25,30 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const rawAllImages = [
-    'work-1.webp','work-2.webp','work-3.webp','work-4.webp',
-    'work-5.webp','work-6.webp','work-7.webp','work-8.webp',
-    'work-9.webp','work-10.webp','work-11.webp','work-12.webp',
-    'work-13.webp','work-14.webp','work-15.webp','work-16.webp',
-    'work-17.webp','work-18.webp','work-19.webp','work-20.webp',
-    'work-21.webp','work-22.webp','work-23.webp','work-24.webp',
-    'work-25.webp','work-26.webp','work-27.webp','work-28.webp',
-    'work-29.webp','work-30.webp','work-31.webp','work-32.webp',
-    'work-33.webp','work-34.webp','work-35.webp','work-36.webp',
-    'work-37.webp','work-38.webp','work-39.webp','work-40.webp',
-    'work-41.webp','work-42.webp','work-43.webp','work-44.webp',
-    'work-45.webp','work-46.webp','work-47.webp','work-48.webp',
-    'work-49.webp','work-50.webp','work-51.webp','work-52.webp',
-    'work-53.webp','work-54.webp','work-55.webp','work-56.webp',
-    'work-57.webp','work-59.webp','work-60.webp','work-99.webp',
-    'work-61.webp','work-62.webp','work-63.webp','work-64.webp',
-    'work-65.webp','work-66.webp','work-67.webp','work-68.webp',
-    'work-70.webp','work-71.webp','work-72.webp',
-    'work-73.webp','work-74.webp','work-75.webp','work-76.webp',
-    'work-77.webp','work-78.webp','work-79.webp','work-80.webp',
-    'work-82.webp','work-83.webp','work-84.webp',
-    'work-85.webp','work-86.webp','work-87.webp','work-88.webp',
-    'work-89.webp','work-91.webp','work-92.webp',
-    'work-96.webp',
-    'work-101.webp','work-102.webp','work-103.webp','work-104.webp',
-    'work-105.webp','work-106.webp','work-107.webp','work-108.webp',
-    'work-109.webp','work-110.webp','work-111.webp','work-112.webp',
-    'work-113.webp','work-115.webp','work-116.webp','work-117.webp',
-    'work-118.webp','work-119.webp','work-120.webp','work-121.webp'
-  ];
+   [
+  'work-1.webp', 'work-2.webp', 'work-3.webp', 'work-4.webp', 'work-5.webp', 
+  'work-6.webp', 'work-7.webp', 'work-8.webp', 'work-9.webp', 'work-10.webp', 
+  'work-11.webp', 'work-12.webp', 'work-13.webp', 'work-14.webp', 'work-15.webp', 
+  'work-16.webp', 'work-17.webp', 'work-18.webp', 'work-19.webp', 'work-20.webp', 
+  'work-21.webp', 'work-22.webp', 'work-23.webp', 'work-24.webp', 'work-25.webp', 
+  'work-26.webp', 'work-27.webp', 'work-28.webp', 'work-29.webp', 'work-30.webp', 
+  'work-31.webp', 'work-32.webp', 'work-33.webp', 'work-34.webp', 'work-35.webp', 
+  'work-36.webp', 'work-37.webp', 'work-38.webp', 'work-39.webp', 'work-40.webp', 
+  'work-41.webp', 'work-42.webp', 'work-43.webp', 'work-44.webp', 'work-45.webp', 
+  'work-46.webp', 'work-47.webp', 'work-48.webp', 'work-49.webp', 'work-50.webp', 
+  'work-51.webp', 'work-52.webp', 'work-53.webp', 'work-54.webp', 'work-55.webp', 
+  'work-56.webp', 'work-57.webp', 'work-59.webp', 'work-60.webp', 'work-61.webp', 
+  'work-62.webp', 'work-63.webp', 'work-64.webp', 'work-65.webp', 'work-66.webp', 
+  'work-67.webp', 'work-68.webp', 'work-70.webp', 'work-71.webp', 'work-72.webp', 
+  'work-73.webp', 'work-74.webp', 'work-75.webp', 'work-76.webp', 'work-77.webp', 
+  'work-78.webp', 'work-79.webp', 'work-80.webp', 'work-82.webp', 'work-83.webp', 
+  'work-84.webp', 'work-85.webp', 'work-86.webp', 'work-87.webp', 'work-88.webp', 
+  'work-89.webp', 'work-91.webp', 'work-92.webp', 'work-96.webp', 'work-99.webp', 
+  'work-101.webp', 'work-102.webp', 'work-103.webp', 'work-104.webp', 'work-105.webp', 
+  'work-106.webp', 'work-107.webp', 'work-108.webp', 'work-109.webp', 'work-110.webp', 
+  'work-111.webp', 'work-112.webp', 'work-113.webp', 'work-115.webp', 'work-116.webp', 
+  'work-117.webp', 'work-118.webp', 'work-119.webp', 'work-120.webp', 'work-121.webp'
+];
 
   const relmiteImages     = rawRelmite.map(img => basePath + img);
   const petalsmoothImages = rawPetalsmooth.map(img => basePath + img);
