@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const rawAllImages = [
-   [
   'work-1.webp', 'work-2.webp', 'work-3.webp', 'work-4.webp', 'work-5.webp', 
   'work-6.webp', 'work-7.webp', 'work-8.webp', 'work-9.webp', 'work-10.webp', 
   'work-11.webp', 'work-12.webp', 'work-13.webp', 'work-14.webp', 'work-15.webp', 
