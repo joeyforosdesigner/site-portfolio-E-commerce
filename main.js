@@ -65,24 +65,43 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ─── BUILD PIN GRIDS ───────────────────────────────────────────────────────
+  // ─── BUILD PIN GRIDS (OPTION B - ANTI-DECALAGE) ────────────────────────────
   function buildPins(containerId, images) {
     const c = document.getElementById(containerId);
     if (!c) return;
     c.innerHTML = '';
-    images.forEach((src, i) => {
+    
+    // Sécurité anti-crash : on filtre les valeurs invalides
+    const validImages = images.filter(src => src && typeof src === 'string');
+
+    validImages.forEach((src, i) => {
       const div = document.createElement('div');
       div.className = 'pin';
+      
+      // On cache la boîte par défaut et on prépare la transition fluide
+      div.style.opacity = '0';
+      div.style.transition = 'opacity 0.4s ease-in-out';
+
       const img = document.createElement('img');
       img.src = src;
       img.alt = 'Portfolio Asset';
       img.loading = 'lazy';
+
+      // ÉVÉNEMENT 1 : L'image a fini de charger, le navigateur connaît sa taille
+      img.onload = function() {
+        div.style.opacity = '1'; // On fait apparaître la boîte proprement
+      };
+
+      // ÉVÉNEMENT 2 : L'image a un problème (404, etc.)
       img.onerror = function() {
         this.style.border = '2px solid red';
         this.alt = 'ERREUR : ' + src;
+        div.style.opacity = '1'; // On affiche quand même le bloc d'erreur
         console.error("L'image n'a pas été trouvée : ", this.src);
       };
+
       div.appendChild(img);
-      div.addEventListener('click', () => openLightbox(images, i));
+      div.addEventListener('click', () => openLightbox(validImages, i));
       c.appendChild(div);
     });
   }
